@@ -1,0 +1,35 @@
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: ubuntu-22.04
+    driver_config:
+      network:
+        - ["forwarded_port", {guest: 80, host: 8080}]
+        - ["private_network", {ip: "192.168.33.11"}]
+    attributes:
+      wordpress:
+        site_url: "http://192.168.33.11"
+  - name: centos-stream-8
+    driver_config:
+      network:
+        - ["forwarded_port", {guest: 80, host: 3000}]
+        - ["private_network", {ip: "192.168.33.12"}]
+    attributes:
+      wordpress:
+        site_url: "http://192.168.33.12"
+
+suites:
+  - name: wordpress
+    run_list:
+      - recipe[wordpress_server::default]
+    verifier:
+      name: inspec
+    attributes:
+      wordpress:
+        db_name: wordpress
+        db_user: root
+        db_password: password

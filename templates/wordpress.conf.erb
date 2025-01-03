@@ -1,0 +1,13 @@
+<VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html
+    
+    <Directory /var/www/html>
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog <%= @log_dir %>/error.log
+    CustomLog <%= @log_dir %>/access.log combined
+</VirtualHost>

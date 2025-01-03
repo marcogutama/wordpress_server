@@ -1,0 +1,7 @@
+name 'wordpress_server'
+maintainer 'Your Name'
+maintainer_email 'your.email@example.com'
+license 'All Rights Reserved'
+description 'Installs/Configures wordpress server'
+version '0.1.0'
+chef_version '>= 14.0'
