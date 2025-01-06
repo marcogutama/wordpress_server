@@ -3,6 +3,9 @@ if platform_family?('debian')
   apt_update 'Actualizar caché de APT' do
     action :update
   end
+  package 'curl' do
+    action :install
+  end
 end
 
 if platform_family?('rhel')
@@ -13,6 +16,9 @@ if platform_family?('rhel')
       sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
     EOH
     action :run
+  end
+  package 'curl' do
+    action :install
   end
 end
 
